@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<!-- 引入 echarts.js -->
+	<script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.7.0/echarts.min.js"></script>
+</head>
+
+<body>
+	<div id="main" style="width: 600px;height:400px;"></div>
+
+	<script>
+		// 基于准备好的dom，初始化echarts实例
+		var myChart = echarts.init(document.getElementById('main'));
+
+		// 指定图表的配置项和数据
+		option = {
+			xAxis: {
+				type: 'category',
+				data: ['广州A公司', '广州B公司', '广州C公司']
+			},
+			yAxis: {
+				type: 'value'
+			},
+			series: [{
+				data: [
+					{
+						value: 50,
+						flag: true
+					},
+					{
+						value: 300,
+						flag: false
+					},
+					{
+						value: 170,
+						flag: false
+					}
+				],
+				// data: [50, 300, 170],
+				type: 'bar',
+				itemStyle: {
+					normal: {
+						color(params) {
+							console.log('params', params)
+							if (params.data.flag) {
+								return 'red'
+							} else {
+								return 'lightblue'
+							}
+						}
+					}
+				}
+			}]
+		};
+
+		// 使用刚指定的配置项和数据显示图表。
+		myChart.setOption(option);
+	</script>
+</body>
+
+</html>

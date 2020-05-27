@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+	<!-- 引入 echarts.js -->
+	<script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.7.0/echarts.min.js"></script>
+</head>
+
+<body>
+	<div id="main" style="width: 400px; height:900px;"></div>
+
+	<script>
+		let myChart = echarts.init(document.getElementById('main'));
+		let option = {
+			tooltip: {
+				trigger: 'axis',
+				axisPointer: {
+					type: 'shadow'
+				}
+			},
+			legend: {
+				data: ['数量A', '数量B']
+			},
+			grid: {
+				x: 0,
+				y: 40,
+				x2: 10,
+				y2: 30,
+				containLabel: true
+			},
+			xAxis: [
+				{
+					type: 'value',
+					name: '数量A',
+					min: 0,
+            		max: 50,
+				},
+				{
+					type: 'value',
+					name: '数量B',
+					min: 0,
+            		max: 5000,
+					offset: 50,
+					position: "bottom",
+				}
+			],
+			yAxis: {
+				type: 'category',
+				nameLocation: "left",
+				axisTick: true,
+				boundaryGap: false,
+				data: [
+					'广州A公司',
+					'广州B公司',
+					'广州C公司',
+				],
+				splitLine: {
+					show: false
+				},
+				axisLabel: {
+					margin: 90,
+					textStyle: {
+						color: '#666',
+						fontSize: '12',
+						baseline: 'middle',
+						align: 'left',
+					}
+				}
+			},
+			series: [
+				{
+					name: '数量A',
+					type: 'line',
+					xAxisIndex: 0,
+					areaStyle: {},
+					data: [30, 20, 18],
+					barWidth: 60,
+				},
+				{
+					name: '数量B',
+					type: 'line',
+					xAxisIndex: 1,
+					areaStyle: {},
+					data: [1800, 500, 3000],
+					barWidth: 60,
+				}
+			]
+		}
+		myChart.setOption(option)
+	</script>
+</body>
+
+</html>
